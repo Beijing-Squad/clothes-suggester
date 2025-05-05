@@ -1,4 +1,4 @@
-package org.beijingteam.domain.entities
+package org.beijingteam.domain.entity
 
 data class Clothes(
     val upperBody: String,

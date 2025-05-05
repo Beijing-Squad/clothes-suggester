@@ -1,7 +1,7 @@
-package org.beijingteam.data.repositories
+package org.beijingteam.data.repository
 
 import org.beijingteam.data.repository.dataSource.RemoteDataSource
-import org.beijingteam.domain.entities.Weather
+import org.beijingteam.domain.entity.Weather
 import org.beijingteam.domain.repository.WeatherRepository
 
 

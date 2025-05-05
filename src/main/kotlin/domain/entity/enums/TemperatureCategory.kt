@@ -1,4 +1,4 @@
-package org.beijingteam.domain.entities.enums
+package org.beijingteam.domain.entity.enums
 
 enum class TemperatureCategory {
     FREEZING,

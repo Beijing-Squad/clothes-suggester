@@ -1,7 +1,7 @@
 package org.beijingteam.data.repository.dataSource
 
-import org.beijingteam.domain.entities.Weather
+import data.dto.WeatherDto
 
 interface RemoteDataSource {
-    suspend fun fetchWeatherByAPI():Weather
+    suspend fun fetchWeatherByAPI():WeatherDto
 }

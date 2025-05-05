@@ -1,14 +1,15 @@
-package org.beijingteam.domain.entities
+package data.dto
 
-import org.beijingteam.domain.entities.enums.TemperatureCategory
-import org.beijingteam.domain.entities.enums.WeatherCondition
+import org.beijingteam.domain.entity.enums.TemperatureCategory
+import org.beijingteam.domain.entity.enums.WeatherCondition
 
-data class Weather(
-    val temperature : Double,
-    val relativeHumidity : Double,
+
+data class WeatherDto(
+    val temperature: Double,
+    val relativeHumidity: Double,
     val weatherCode: Int,
     val isDay: Boolean,
-){
+) {
     val condition: WeatherCondition
         get() = when (weatherCode) {
             0 -> WeatherCondition.CLEAR
