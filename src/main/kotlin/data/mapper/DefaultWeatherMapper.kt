@@ -3,7 +3,7 @@ package org.beijingteam.data.mapper
 import org.beijingteam.domain.entity.enums.TemperatureCategory
 import org.beijingteam.domain.entity.enums.WeatherCondition
 
-class WeatherMapperImpl : WeatherMapper {
+class DefaultWeatherMapper : WeatherMapper {
     override fun mapCondition(weatherCode: Int): WeatherCondition {
         return when (weatherCode) {
             0 -> WeatherCondition.CLEAR
