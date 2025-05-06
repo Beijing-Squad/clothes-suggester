@@ -4,7 +4,6 @@ import org.beijingteam.data.mapper.WeatherMapper
 import org.beijingteam.domain.entity.enums.TemperatureCategory
 import org.beijingteam.domain.entity.enums.WeatherCondition
 
-
 data class WeatherDto(
     val temperature: Double,
     val relativeHumidity: Double,

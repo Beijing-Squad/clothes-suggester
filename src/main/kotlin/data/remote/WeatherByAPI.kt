@@ -1,7 +1,7 @@
 package org.beijingteam.data.remote
 
-import org.beijingteam.data.repository.dataSource.RemoteDataSource
 import data.dto.WeatherDto
+import org.beijingteam.data.repository.dataSource.RemoteDataSource
 
 class RemoteWeatherDataSource : RemoteDataSource {
     override suspend fun fetchWeatherByAPI(): WeatherDto {
