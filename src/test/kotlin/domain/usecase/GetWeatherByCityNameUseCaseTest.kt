@@ -43,7 +43,7 @@ class GetWeatherByCityNameUseCaseTest {
         val result = getWeatherByCityName.getWeatherByCityName(cityName)
 
         // Then
-        assertThat(result).isEqualTo(expectedWeather)
+        assertThat(result.getOrNull()).isEqualTo(expectedWeather)
     }
 
     @ParameterizedTest
@@ -63,21 +63,23 @@ class GetWeatherByCityNameUseCaseTest {
         val result = getWeatherByCityName.getWeatherByCityName(cityName)
 
         // Then
-        assertThat(result).isEqualTo(exception)
+        assertThat(result.exceptionOrNull()).isEqualTo(exception)
     }
 
     @Test
     fun `should return failure when city name is empty`() = runTest {
+        // Given
         val cityName = ""
         val exception = Throwable("City name cannot be empty")
-
         coEvery {
             weatherRepository.getWeatherByCityName(cityName)
         } returns Result.failure(exception)
 
+        // When
         val result = getWeatherByCityName.getWeatherByCityName(cityName)
 
-        assertThat(result).isEqualTo(exception)
+        // Then
+        assertThat(result.exceptionOrNull()).isEqualTo(exception)
     }
 
 }
