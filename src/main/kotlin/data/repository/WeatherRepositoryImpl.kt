@@ -1,12 +1,12 @@
 package org.beijingteam.data.repository
 
-import org.beijingteam.data.remote.datasource.WeatherRemoteDataSourceImpl
 import org.beijingteam.data.mapper.WeatherMapper
+import org.beijingteam.data.remote.datasource.RemoteDataSource
 import org.beijingteam.domain.entity.Weather
 import org.beijingteam.domain.repository.WeatherRepository
 
 class WeatherRepositoryImpl(
-    private val remoteWeatherDataSource: WeatherRemoteDataSourceImpl,
+    private val remoteDataSource: RemoteDataSource,
     private val weatherMapper: WeatherMapper
 ) : WeatherRepository {
 
