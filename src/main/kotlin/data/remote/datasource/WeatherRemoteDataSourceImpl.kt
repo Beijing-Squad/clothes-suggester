@@ -1,6 +1,6 @@
 package org.beijingteam.data.remote.datasource
 
-import org.beijingteam.data.model.WeatherDto
+import org.beijingteam.data.dto.WeatherDto
 import org.beijingteam.data.remote.api.WeatherApiService
 
 class WeatherRemoteDataSourceImpl(

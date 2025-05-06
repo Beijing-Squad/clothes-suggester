@@ -1,4 +1,4 @@
-package org.beijingteam.data.model
+package org.beijingteam.data.dto
 
 import org.beijingteam.data.mapper.WeatherMapper
 import org.beijingteam.domain.entity.enums.TemperatureCategory

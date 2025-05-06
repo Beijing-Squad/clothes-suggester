@@ -1,6 +1,6 @@
 package org.beijingteam.data.remote.api
 
-import org.beijingteam.data.model.WeatherDto
+import org.beijingteam.data.dto.WeatherDto
 import data.remote.response.GeocodingApiResponse
 import data.remote.response.WeatherApiResponse
 import io.ktor.client.*
