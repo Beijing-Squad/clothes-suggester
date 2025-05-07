@@ -2,6 +2,9 @@ package domain.usecase
 
 import com.google.common.truth.Truth.assertThat
 import domain.entity.LocationCoordinate
+import domain.exception.MissingTemperatureException
+import domain.exception.MissingWeatherCodeException
+import domain.useCase.GetWeatherByLongitudeAndLatitudeUseCase
 import helper.createWeather
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -9,7 +12,6 @@ import kotlinx.coroutines.test.runTest
 import org.beijingteam.domain.entity.TemperatureCategory
 import org.beijingteam.domain.entity.WeatherCondition
 import org.beijingteam.domain.repository.WeatherRepository
-import domain.useCase.GetWeatherByLongitudeAndLatitudeUseCase
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
@@ -126,23 +128,25 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
     }
 
     @Test
-    fun `should return failure when latitude exceeds 90 `() = runTest {
+    fun `should throw MissingTemperatureException when weather data has no temperature`() = runTest {
         // Given
-        val locationCoordinate = LocationCoordinate(latitude = 91.0, longitude = 0.0)
+        val locationCoordinate = LocationCoordinate(latitude = 45.0, longitude = 90.0)
+        coEvery { weatherRepository.getWeatherByCoordinate(locationCoordinate) } throws MissingTemperatureException()
 
-        // Then
-        assertFailsWith<IllegalArgumentException> {
+        // When&&Then
+        assertFailsWith<MissingTemperatureException> {
             getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
         }
     }
 
     @Test
-    fun `should return failure when longitude exceeds 180`() = runTest {
+    fun `should throw MissingWeatherCodeException when weather data has no weather code`() = runTest {
         // Given
-        val locationCoordinate = LocationCoordinate(latitude = 0.0, longitude = 190.0)
+        val locationCoordinate = LocationCoordinate(latitude = 45.0, longitude = 90.0)
+        coEvery { weatherRepository.getWeatherByCoordinate(locationCoordinate) } throws MissingWeatherCodeException()
 
-        // Then
-        assertFailsWith<IllegalArgumentException> {
+        // When&&Then
+        assertFailsWith<MissingWeatherCodeException> {
             getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
         }
     }
