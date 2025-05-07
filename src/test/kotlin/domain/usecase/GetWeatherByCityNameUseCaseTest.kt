@@ -1,19 +1,19 @@
 package domain.usecase
 
-import io.mockk.mockk
-import org.beijingteam.domain.repository.WeatherRepository
+import domain.repository.LocationRepository
 import domain.useCase.GetWeatherByCityNameUseCase
+import io.mockk.mockk
 import kotlin.test.BeforeTest
 
 class GetWeatherByCityNameUseCaseTest {
 
-    private lateinit var weatherRepository: WeatherRepository
+    private lateinit var locationRepository: LocationRepository
     private lateinit var getWeatherByCityName: GetWeatherByCityNameUseCase
 
     @BeforeTest
     fun setup() {
-        weatherRepository = mockk(relaxed = true)
-        getWeatherByCityName = GetWeatherByCityNameUseCase(weatherRepository)
+        locationRepository = mockk(relaxed = true)
+        getWeatherByCityName = GetWeatherByCityNameUseCase(locationRepository)
     }
 
 }
