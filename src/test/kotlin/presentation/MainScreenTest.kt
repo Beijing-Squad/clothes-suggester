@@ -4,33 +4,29 @@ import domain.entity.ClothType
 import domain.entity.LocationCoordinate
 import domain.exception.MissingLocationException
 import domain.repository.LocationRepository
-import domain.useCase.GetWeatherByCityNameUseCase
+import domain.usecase.GetCoordinateByCityNameUseCase
 import domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
 import helper.createClothes
 import helper.createWeather
 import io.mockk.coEvery
-import io.mockk.coVerify
-import io.mockk.coVerifyAll
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
 import org.beijingteam.domain.repository.WeatherRepository
-import org.beijingteam.domain.useCase.GetClothingSuggestionUseCase
+import org.beijingteam.domain.usecase.GetClothingSuggestionUseCase
 import org.beijingteam.presentation.MainScreen
 import org.beijingteam.presentation.consoleIO.ConsoleIO
-import org.hamcrest.core.Every
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import kotlin.uuid.ExperimentalUuidApi
 
 class MainScreenTest {
     private lateinit var consoleIO: ConsoleIO
     private lateinit var mainScreen: MainScreen
     private lateinit var getWeatherByLongitudeAndLatitudeUseCase: GetWeatherByLongitudeAndLatitudeUseCase
-    private lateinit var getWeatherByCityNameUseCase: GetWeatherByCityNameUseCase
+    private lateinit var geCoorinateByCityNameUseCase: GetCoordinateByCityNameUseCase
     private lateinit var getClothingSuggestionUseCase: GetClothingSuggestionUseCase
     private lateinit var locationRepository: LocationRepository
     private lateinit var weatherRepository: WeatherRepository
@@ -38,13 +34,13 @@ class MainScreenTest {
     @BeforeEach
     fun setup() {
         consoleIO = mockk(relaxed = true)
-        getWeatherByCityNameUseCase = mockk(relaxed = true)
+        geCoorinateByCityNameUseCase = mockk(relaxed = true)
         getWeatherByLongitudeAndLatitudeUseCase = mockk(relaxed = true)
         weatherRepository = mockk(relaxed = true)
         getClothingSuggestionUseCase=mockk(relaxed = true)
         locationRepository=mockk(relaxed = true)
         mainScreen = MainScreen(
-            getWeatherByCityNameUseCase,
+            geCoorinateByCityNameUseCase,
             getWeatherByLongitudeAndLatitudeUseCase,
             getClothingSuggestionUseCase,
             consoleIO
@@ -113,8 +109,8 @@ class MainScreenTest {
 
         // When
         mainScreen.start()
-        val location = getWeatherByCityNameUseCase.getCoordinateByCityName(cityName)
-        val weather= getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinate(location)
+        val location = geCoorinateByCityNameUseCase.getCoordinateByCityName(cityName)
+        val weather = getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(location)
         val cloth=getClothingSuggestionUseCase.getClothByType(clothType)
 
         // Then
@@ -133,7 +129,7 @@ class MainScreenTest {
 
         // When
         mainScreen.start()
-        getWeatherByCityNameUseCase.getCoordinateByCityName(cityName)
+        geCoorinateByCityNameUseCase.getCoordinateByCityName(cityName)
 
         // Then
         verify {

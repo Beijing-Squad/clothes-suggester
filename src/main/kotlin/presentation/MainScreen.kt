@@ -1,15 +1,15 @@
 package org.beijingteam.presentation
 
 import domain.entity.Cloth
-import domain.useCase.GetWeatherByCityNameUseCase
+import domain.usecase.GetCoordinateByCityNameUseCase
 import domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
 import org.beijingteam.domain.entity.Weather
-import org.beijingteam.domain.useCase.GetClothingSuggestionUseCase
+import org.beijingteam.domain.usecase.GetClothingSuggestionUseCase
 
 import org.beijingteam.presentation.consoleIO.ConsoleIO
 
 class MainScreen(
-    private val weatherByCityName: GetWeatherByCityNameUseCase,
+    private val weatherByCityName: GetCoordinateByCityNameUseCase,
     private val weatherByLocation: GetWeatherByLongitudeAndLatitudeUseCase,
     private val ClothingSuggestion: GetClothingSuggestionUseCase,
     private val consoleIO: ConsoleIO
