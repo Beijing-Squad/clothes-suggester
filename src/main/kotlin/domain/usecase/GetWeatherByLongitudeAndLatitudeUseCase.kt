@@ -1,4 +1,4 @@
-package domain.useCase
+package domain.usecase
 
 import domain.entity.LocationCoordinate
 import org.beijingteam.domain.entity.Weather
