@@ -8,7 +8,7 @@ import kotlinx.coroutines.test.runTest
 import org.beijingteam.domain.entity.enums.TemperatureCategory
 import org.beijingteam.domain.entity.enums.WeatherCondition
 import org.beijingteam.domain.repository.WeatherRepository
-import org.beijingteam.domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
+import domain.useCase.GetWeatherByLongitudeAndLatitudeUseCase
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
