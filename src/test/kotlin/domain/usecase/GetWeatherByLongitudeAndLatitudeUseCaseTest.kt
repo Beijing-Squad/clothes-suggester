@@ -2,6 +2,9 @@ package domain.usecase
 
 import com.google.common.truth.Truth.assertThat
 import domain.entity.LocationCoordinate
+import domain.exception.MissingTemperatureException
+import domain.exception.MissingWeatherCodeException
+import domain.useCase.GetWeatherByLongitudeAndLatitudeUseCase
 import helper.createWeather
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -9,7 +12,6 @@ import kotlinx.coroutines.test.runTest
 import org.beijingteam.domain.entity.TemperatureCategory
 import org.beijingteam.domain.entity.WeatherCondition
 import org.beijingteam.domain.repository.WeatherRepository
-import domain.useCase.GetWeatherByLongitudeAndLatitudeUseCase
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
@@ -125,5 +127,27 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
         assertThat(result).isEqualTo(expectedWeather)
     }
 
+    @Test
+    fun `should throw MissingTemperatureException when weather data has no temperature`() = runTest {
+        // Given
+        val locationCoordinate = LocationCoordinate(latitude = 45.0, longitude = 90.0)
+        coEvery { weatherRepository.getWeatherByCoordinate(locationCoordinate) } throws MissingTemperatureException()
 
+        // When&&Then
+        assertFailsWith<MissingTemperatureException> {
+            getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
+        }
+    }
+
+    @Test
+    fun `should throw MissingWeatherCodeException when weather data has no weather code`() = runTest {
+        // Given
+        val locationCoordinate = LocationCoordinate(latitude = 45.0, longitude = 90.0)
+        coEvery { weatherRepository.getWeatherByCoordinate(locationCoordinate) } throws MissingWeatherCodeException()
+
+        // When&&Then
+        assertFailsWith<MissingWeatherCodeException> {
+            getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
+        }
+    }
 }
