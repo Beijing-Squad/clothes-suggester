@@ -2,9 +2,11 @@ package presentation
 
 import helper.createWeather
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import kotlinx.coroutines.test.runTest
 import org.beijingteam.domain.repository.WeatherRepository
 import org.beijingteam.domain.usecase.GetWeatherByCityNameUseCase
 import org.beijingteam.domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
@@ -48,7 +50,7 @@ class MainScreenTest {
 
 
     @Test
-    fun `should call search by city name function when choice is yes`() {
+    fun `should call search by city name function when choice is yes`() = runTest {
         // Given
         val cityName = "Baghdad"
         every { consoleIO.read() } returns INPUT_CHOICE andThen cityName andThen EXIT_INPUT
@@ -57,8 +59,9 @@ class MainScreenTest {
         mainScreen.start()
 
         // Then
-        verify { getWeatherByCityNameUseCase.GetWeatherByCityName(cityName) }
+        coVerify { getWeatherByCityNameUseCase.GetWeatherByCityName(cityName) }
     }
+
 
     @Test
     fun `should exit when choice is no`() {
@@ -75,7 +78,7 @@ class MainScreenTest {
     }
 
     @Test
-    fun `should return weather when city name is valid`() {
+    fun `should return weather when city name is valid`() =runTest{
         // Given
         val cityName = "Baghdad"
         val dummyWeather = createWeather()
@@ -92,7 +95,7 @@ class MainScreenTest {
     }
 
     @Test
-    fun `should return failure when weather fetching fails`() {
+    fun `should return failure when weather fetching fails`() =runTest{
         // Given
         val cityName = "Baghdad"
         val exception = Exception("City not found")
