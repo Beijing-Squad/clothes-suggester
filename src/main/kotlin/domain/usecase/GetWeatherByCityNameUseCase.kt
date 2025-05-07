@@ -8,7 +8,7 @@ class GetWeatherByCityNameUseCase(
 ) {
 
     suspend fun getWeatherByCityName(cityName: String): Result<Weather> {
-        return weatherRepository.getWeatherByCityName(cityName)
+        TODO("Not yet implemented")
     }
 
 }
