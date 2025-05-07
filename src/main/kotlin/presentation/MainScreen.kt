@@ -1,6 +1,5 @@
 package org.beijingteam.presentation
 
-import org.beijingteam.domain.entity.Clothes
 import org.beijingteam.domain.entity.Weather
 import org.beijingteam.domain.usecase.GetWeatherByCityNameUseCase
 import org.beijingteam.domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase

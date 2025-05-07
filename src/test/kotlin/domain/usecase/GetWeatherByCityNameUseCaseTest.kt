@@ -2,7 +2,7 @@ package domain.usecase
 
 import io.mockk.mockk
 import org.beijingteam.domain.repository.WeatherRepository
-import org.beijingteam.domain.usecase.GetWeatherByCityNameUseCase
+import domain.useCase.GetWeatherByCityNameUseCase
 import kotlin.test.BeforeTest
 
 class GetWeatherByCityNameUseCaseTest {

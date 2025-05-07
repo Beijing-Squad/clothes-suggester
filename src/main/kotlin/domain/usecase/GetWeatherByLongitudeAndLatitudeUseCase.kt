@@ -1,4 +1,4 @@
-package org.beijingteam.domain.usecase
+package domain.useCase
 
 import org.beijingteam.domain.repository.WeatherRepository
 
