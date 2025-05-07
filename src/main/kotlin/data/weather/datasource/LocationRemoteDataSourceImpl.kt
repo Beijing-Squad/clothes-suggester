@@ -12,7 +12,7 @@ class LocationRemoteDataSourceImpl(
     private val client: HttpClient,
     private val json: Json
 ): LocationRemoteDataSource {
-    override suspend fun getLocationByCityAndCountry(cityName: String): CityLocationDto {
+    override suspend fun getLocationByCityName(cityName: String): CityLocationDto {
         val response = client.get(BASE_CITY_LOCATION_URL){
             parameter("name", cityName)
         }
