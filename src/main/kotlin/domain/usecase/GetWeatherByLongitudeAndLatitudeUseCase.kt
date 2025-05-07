@@ -9,6 +9,6 @@ class GetWeatherByLongitudeAndLatitudeUseCase(
 ) {
 
     suspend fun getWeatherByCoordinates(locationCoordinate: LocationCoordinate): Weather {
-       TODO("NOT YET IMPLEMENTED")
+       return weatherRepository.getWeatherByCoordinate(locationCoordinate)
     }
 }
