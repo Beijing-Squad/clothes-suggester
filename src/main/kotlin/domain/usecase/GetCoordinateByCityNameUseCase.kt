@@ -8,7 +8,7 @@ class GetCoordinateByCityNameUseCase(
 ) {
 
     suspend fun getCoordinateByCityName(cityName: String): LocationCoordinate {
-        TODO("Not yet implemented")
+        return locationRepository.getCoordinateByCityName(cityName)
     }
 
 }
