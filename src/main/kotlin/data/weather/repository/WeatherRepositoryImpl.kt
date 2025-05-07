@@ -11,7 +11,8 @@ class WeatherRepositoryImpl(
     private val weatherMapper: WeatherMapper
 ) : WeatherRepository {
     override suspend fun getWeatherByCoordinate(locationCoordinate: LocationCoordinate): Weather {
-        TODO("Not yet implemented")
+        val weatherCondition=remoteDataSource.getWeatherByCoordinate(locationCoordinate)
+        return weatherMapper.mapToDomain(weatherCondition)
     }
 
 }
