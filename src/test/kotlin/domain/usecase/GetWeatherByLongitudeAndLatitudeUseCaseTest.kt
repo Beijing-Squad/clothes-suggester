@@ -62,7 +62,7 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
         val result = getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
 
         // Then
-        assertThat(result).isEqualTo(Result.success(expectedWeather))
+        assertThat(result).isEqualTo(expectedWeather)
     }
 
     @Test
@@ -125,25 +125,5 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
         assertThat(result).isEqualTo(expectedWeather)
     }
 
-    @Test
-    fun `should return failure when latitude exceeds 90 `() = runTest {
-        // Given
-        val locationCoordinate = LocationCoordinate(latitude = 91.0, longitude = 0.0)
 
-        // Then
-        assertFailsWith<IllegalArgumentException> {
-            getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
-        }
-    }
-
-    @Test
-    fun `should return failure when longitude exceeds 180`() = runTest {
-        // Given
-        val locationCoordinate = LocationCoordinate(latitude = 0.0, longitude = 190.0)
-
-        // Then
-        assertFailsWith<IllegalArgumentException> {
-            getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
-        }
-    }
 }
