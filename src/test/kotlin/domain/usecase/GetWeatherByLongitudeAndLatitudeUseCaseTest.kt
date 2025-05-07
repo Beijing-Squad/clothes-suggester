@@ -62,7 +62,7 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
         val result = getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
 
         // Then
-        assertThat(result).isEqualTo(Result.success(expectedWeather))
+        assertThat(result).isEqualTo(expectedWeather)
     }
 
     @Test
