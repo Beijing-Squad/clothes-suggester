@@ -1,15 +1,19 @@
 package helper
 
-import org.beijingteam.domain.entity.Clothes
+import domain.entity.Cloth
+import domain.entity.ClothType
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 fun createClothes(
-    upperBody: String = "T-Shirt",
-    lowerBody: String = "Jeans",
-    footWear: String = "Sneakers"
-): Clothes {
-    return Clothes(
-        upperBody = upperBody,
-        lowerBody = lowerBody,
-        footWear = footWear
+    id: Uuid  = Uuid.random(),
+    clothName: String = "T-Shirt",
+    clothType: ClothType = ClothType.HEAVY_CLOTH
+): Cloth {
+    return Cloth(
+        id =id ,
+        clothName = clothName,
+        clothType = clothType
     )
 }
