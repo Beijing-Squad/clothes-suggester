@@ -42,11 +42,29 @@ class GetCoordinateByCityNameUseCaseTest {
         assertThat(result).isEqualTo(expectedCoordinate)
     }
 
+    @Test
+    fun `should return coordinates when city name is in different case`() = runTest {
+        // Given
+        val cityName = "BeIjInG"
+        val expectedCoordinate = LocationCoordinate(39.9042, 116.4074)
+
+        coEvery {
+            locationRepository.getCoordinateByCityName(cityName)
+        } returns expectedCoordinate
+
+        // When
+        val result = getCoordinateByCityName.getCoordinateByCityName(cityName)
+
+        // Then
+        assertThat(result).isEqualTo(expectedCoordinate)
+    }
+
     @ParameterizedTest
     @CsvSource(
         "InvalidCity",
         "@#!#%",
-        "12  34   "
+        "12  34   ",
+        "New@York!"
     )
     fun `should throw MissingLocationException when city name is not found`(cityName: String) = runTest {
         // Given
