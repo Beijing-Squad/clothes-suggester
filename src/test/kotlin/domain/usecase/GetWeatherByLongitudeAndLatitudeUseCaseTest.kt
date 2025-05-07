@@ -4,7 +4,7 @@ import com.google.common.truth.Truth.assertThat
 import helper.createWeather
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.beijingteam.domain.entity.enums.TemperatureCategory
 import org.beijingteam.domain.entity.enums.WeatherCondition
 import org.beijingteam.domain.repository.WeatherRepository
@@ -24,7 +24,7 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
     }
 
     @Test
-    fun `should return result with weather when repository returns the weather successfully`() = runBlocking {
+    fun `should return result with weather when repository returns the weather successfully`() = runTest {
         // Given
         val longitude = 116.397
         val latitude = 39.904
@@ -46,7 +46,7 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
     }
 
     @Test
-    fun `should return weather when called with maximum latitude`() = runBlocking {
+    fun `should return weather when called with maximum latitude`() = runTest {
         // Given
         val longitude = 0.0
         val latitude = 90.0
@@ -68,7 +68,7 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
     }
 
     @Test
-    fun `should return weather when called with minimum latitude`() = runBlocking {
+    fun `should return weather when called with minimum latitude`() = runTest {
         // Given
         val longitude = 0.0
         val latitude = -90.0
@@ -91,7 +91,7 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
     }
 
     @Test
-    fun `should return weather when called with maximum longitude`() = runBlocking {
+    fun `should return weather when called with maximum longitude`() = runTest {
         // Given
         val longitude = 180.0
         val latitude = 0.0
@@ -113,7 +113,7 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
     }
 
     @Test
-    fun `should return weather when called with minimum longitude`() = runBlocking {
+    fun `should return weather when called with minimum longitude`() = runTest {
         // Given
         val longitude = -180.0
         val latitude = 0.0
@@ -135,7 +135,7 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
     }
 
     @Test
-    fun `should return failure when latitude exceeds 90 `() = runBlocking {
+    fun `should return failure when latitude exceeds 90 `() = runTest {
         // Given
         val longitude = 0.0
         val latitude = 91.0
@@ -148,7 +148,7 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
     }
 
     @Test
-    fun `should return failure when longitude exceeds 180`() = runBlocking {
+    fun `should return failure when longitude exceeds 180`() = runTest {
         // Given
         val longitude = 190.0
         val latitude = 0.0
