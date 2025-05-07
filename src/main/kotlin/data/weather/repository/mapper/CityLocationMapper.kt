@@ -1,4 +1,4 @@
-package data.weather.mapper
+package org.beijingteam.data.weather.repository.mapper
 
 import data.weather.dto.CityLocationDto
 import domain.entity.LocationCoordinate

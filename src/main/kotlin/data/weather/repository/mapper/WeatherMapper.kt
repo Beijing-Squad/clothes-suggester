@@ -1,4 +1,4 @@
-package org.beijingteam.data.weather.mapper
+package org.beijingteam.data.weather.repository.mapper
 
 import domain.exception.MissingTemperatureException
 import domain.exception.MissingWeatherCodeException

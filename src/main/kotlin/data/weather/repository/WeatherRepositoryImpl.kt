@@ -1,7 +1,7 @@
 package org.beijingteam.data.weather.repository
 
 import domain.entity.LocationCoordinate
-import org.beijingteam.data.weather.mapper.WeatherMapper
+import org.beijingteam.data.weather.repository.mapper.WeatherMapper
 import org.beijingteam.data.weather.datasource.WeatherRemoteDataSource
 import org.beijingteam.domain.entity.Weather
 import org.beijingteam.domain.repository.WeatherRepository
