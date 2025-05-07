@@ -11,6 +11,7 @@ import org.beijingteam.domain.repository.WeatherRepository
 import org.beijingteam.domain.usecase.GetWeatherByCityNameUseCase
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
+import domain.useCase.GetWeatherByCityNameUseCase
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 

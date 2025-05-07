@@ -1,7 +1,7 @@
 package org.beijingteam.presentation
 
-import org.beijingteam.domain.usecase.GetWeatherByCityNameUseCase
-import org.beijingteam.domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
+import domain.useCase.GetWeatherByCityNameUseCase
+import domain.useCase.GetWeatherByLongitudeAndLatitudeUseCase
 
 class MainScreen(
     private val weatherByCityName: GetWeatherByCityNameUseCase,
