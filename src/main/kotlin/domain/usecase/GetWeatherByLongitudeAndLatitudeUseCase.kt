@@ -2,7 +2,6 @@ package domain.useCase
 
 import domain.entity.LocationCoordinate
 import org.beijingteam.domain.entity.Weather
-import org.beijingteam.domain.entity.Weather
 import org.beijingteam.domain.repository.WeatherRepository
 
 class GetWeatherByLongitudeAndLatitudeUseCase(
@@ -10,6 +9,6 @@ class GetWeatherByLongitudeAndLatitudeUseCase(
 ) {
 
     suspend fun getWeatherByCoordinates(locationCoordinate: LocationCoordinate): Weather {
-       TODO("NOT YET IMPLEMENTED")
+       return weatherRepository.getWeatherByCoordinate(locationCoordinate)
     }
 }
