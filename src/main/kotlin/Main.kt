@@ -1,6 +1,15 @@
 package org.beijingteam
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-fun main() {
 
+import org.beijingteam.di.appModule
+import org.beijingteam.presentation.MainScreen
+import org.koin.core.context.startKoin
+import org.koin.mp.KoinPlatform.getKoin
+
+fun main() {
+    startKoin {
+        modules(appModule)
+    }
+
+    val program: MainScreen = getKoin().get()
+    program.start()
 }
