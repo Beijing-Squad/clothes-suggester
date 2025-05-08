@@ -1,11 +1,11 @@
 package domain.usecase
 
 import com.google.common.truth.Truth.assertThat
-import domain.entity.ClothType
+import org.beijingteam.domain.type.ClothType
 import helper.createClothes
 import io.mockk.every
 import io.mockk.mockk
-import org.beijingteam.data.local.cloth.repository.ClothesRepositoryImpl
+import data.local.clothes.repository.ClothesRepositoryImpl
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.uuid.ExperimentalUuidApi

@@ -1,6 +1,6 @@
 package org.beijingteam.presentation
 
-import domain.entity.ClothType
+import org.beijingteam.domain.type.ClothType
 import domain.exception.MissingLocationException
 import domain.exception.MissingTemperatureException
 import domain.exception.MissingWeatherConditionException
@@ -8,7 +8,7 @@ import domain.usecase.GetClothingSuggestionUseCase
 import domain.usecase.GetCoordinateByCityNameUseCase
 import domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
 import kotlinx.coroutines.runBlocking
-import org.beijingteam.domain.entity.TemperatureCategory
+import org.beijingteam.domain.type.TemperatureCategory
 import org.beijingteam.domain.entity.Weather
 import org.beijingteam.presentation.consoleIO.ConsoleIO
 

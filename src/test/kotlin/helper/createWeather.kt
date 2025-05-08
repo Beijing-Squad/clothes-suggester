@@ -1,8 +1,8 @@
 package helper
 
-import org.beijingteam.domain.entity.TemperatureCategory
+import org.beijingteam.domain.type.TemperatureCategory
 import org.beijingteam.domain.entity.Weather
-import org.beijingteam.domain.entity.WeatherCondition
+import org.beijingteam.domain.type.WeatherCondition
 
 fun createWeather(
     temperature: Double = 20.0,
