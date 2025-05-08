@@ -5,7 +5,7 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.serialization.json.Json
 import data.remote.location.dto.CityLocationDto
-import org.beijingteam.data.local.clothes.utils.ApiUrls.BASE_CITY_LOCATION_URL
+import org.beijingteam.data.remote.utils.ApiUrls.BASE_CITY_LOCATION_URL
 
 class LocationRemoteDataSourceImpl(
     private val client: HttpClient,

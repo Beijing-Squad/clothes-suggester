@@ -8,7 +8,7 @@ import domain.repository.ClothesRepository
 class ClothesRepositoryImpl(
     private val clothesDataSource: ClothesDataSource
 ) : ClothesRepository {
-    override fun getClothByType(clothType: ClothType): List<Cloth> {
+    override fun getClothByType(clothType: ClothType): List<Clothes> {
         return clothesDataSource.getClothesByType(clothType)
     }
 }

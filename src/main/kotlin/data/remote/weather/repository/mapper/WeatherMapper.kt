@@ -1,7 +1,7 @@
 package org.beijingteam.data.remote.weather.repository.mapper
 
 import domain.exception.MissingTemperatureException
-import domain.exception.MissingWeatherCodeException
+import domain.exception.MissingWeatherConditionException
 import org.beijingteam.data.remote.weather.dto.WeatherDto
 import org.beijingteam.domain.entity.TemperatureCategory
 import org.beijingteam.domain.entity.Weather
@@ -14,7 +14,7 @@ class WeatherMapper {
             ?: throw MissingTemperatureException()
 
         val weatherCode = weatherDto.currentWeather.weatherCode
-            ?: throw MissingWeatherCodeException()
+            ?: throw MissingWeatherConditionException()
 
         val condition = mapCondition(weatherCode)
         val category = mapTemperatureCategory(temperature)

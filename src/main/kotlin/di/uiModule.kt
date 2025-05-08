@@ -1,8 +1,9 @@
 package org.beijingteam.di
 
-import ConsoleIOImpl
+
 import org.beijingteam.presentation.MainScreen
 import org.beijingteam.presentation.consoleIO.ConsoleIO
+import org.beijingteam.presentation.consoleIO.ConsoleIOImpl
 import org.koin.dsl.module
 
 val uiModule = module {

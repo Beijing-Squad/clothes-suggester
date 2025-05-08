@@ -3,9 +3,7 @@ package org.beijingteam.presentation
 import domain.entity.ClothType
 import domain.exception.MissingLocationException
 import domain.exception.MissingTemperatureException
-import domain.exception.MissingWeatherCodeException
-import domain.usecase.GetCoordinateByCityNameUseCase
-import domain.entity.Clothes
+import domain.exception.MissingWeatherConditionException
 import domain.usecase.GetCoordinateByCityNameUseCase
 import domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
 import kotlinx.coroutines.runBlocking
@@ -46,7 +44,7 @@ class MainScreen(
 
                 } catch (locationError: MissingLocationException) {
                     consoleIO.showWithLine("❌ Error occurred: ${locationError.message}")
-                } catch (weatherError: MissingWeatherCodeException) {
+                } catch (weatherError: MissingWeatherConditionException) {
                     consoleIO.showWithLine("❌ Error occurred: ${weatherError.message}")
                 } catch (tempError: MissingTemperatureException) {
                     consoleIO.showWithLine("❌ Error occurred: ${tempError.message}")

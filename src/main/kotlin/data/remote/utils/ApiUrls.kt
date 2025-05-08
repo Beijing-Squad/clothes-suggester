@@ -1,4 +1,4 @@
-package org.beijingteam.data.local.clothes.utils
+package org.beijingteam.data.remote.utils
 
 object ApiUrls {
     const val WEATHER_URL = "https://api.open-meteo.com/v1/forecast"
