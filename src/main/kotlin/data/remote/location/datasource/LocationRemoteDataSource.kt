@@ -1,6 +1,6 @@
-package data.weather.datasource
+package data.remote.location.datasource
 
-import data.weather.dto.CityLocationDto
+import data.remote.location.dto.CityLocationDto
 
 interface LocationRemoteDataSource {
     suspend fun getLocationByCityName(cityName: String) : CityLocationDto

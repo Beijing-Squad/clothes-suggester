@@ -1,4 +1,4 @@
-package org.beijingteam.data.weather.dto
+package org.beijingteam.data.remote.weather.dto
 
 import kotlinx.serialization.SerialName
 
