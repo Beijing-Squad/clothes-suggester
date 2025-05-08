@@ -1,9 +1,9 @@
-package data.weather.repository
+package data.remote.location.repository
 
-import data.weather.datasource.LocationRemoteDataSource
+import data.remote.location.datasource.LocationRemoteDataSource
+import data.remote.location.repository.mapper.CityLocationMapper
 import domain.entity.LocationCoordinate
 import domain.repository.LocationRepository
-import org.beijingteam.data.weather.repository.mapper.CityLocationMapper
 
 class LocationRepositoryImpl(
     private val remoteDataSource: LocationRemoteDataSource,

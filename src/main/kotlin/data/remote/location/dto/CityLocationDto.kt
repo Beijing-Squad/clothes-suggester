@@ -1,4 +1,4 @@
-package data.weather.dto
+package data.remote.location.dto
 
 import CityLocationDetailsDto
 import kotlinx.serialization.SerialName

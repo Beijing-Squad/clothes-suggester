@@ -5,6 +5,8 @@ import domain.exception.MissingLocationException
 import domain.exception.MissingTemperatureException
 import domain.exception.MissingWeatherCodeException
 import domain.usecase.GetCoordinateByCityNameUseCase
+import domain.entity.Clothes
+import domain.usecase.GetCoordinateByCityNameUseCase
 import domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
 import kotlinx.coroutines.runBlocking
 import org.beijingteam.domain.entity.TemperatureCategory

@@ -1,6 +1,6 @@
-package org.beijingteam.data.weather.repository.mapper
+package data.remote.location.repository.mapper
 
-import data.weather.dto.CityLocationDto
+import data.remote.location.dto.CityLocationDto
 import domain.entity.LocationCoordinate
 import domain.exception.MissingLocationException
 
