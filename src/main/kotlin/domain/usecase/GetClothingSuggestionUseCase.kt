@@ -1,9 +1,13 @@
 package org.beijingteam.domain.useCase
 
+import domain.entity.ClothType
+import domain.entity.Clothes
 import domain.repository.ClothesRepository
 
 class GetClothingSuggestionUseCase(private val clothesRepository: ClothesRepository) {
 
-    //Implement the logic to get clothing suggestions based on weather conditions and temperature
+    fun getClothByType(clothType: ClothType): List<Clothes> {
+        return clothesRepository.getClothByType(clothType)
+    }
 
 }

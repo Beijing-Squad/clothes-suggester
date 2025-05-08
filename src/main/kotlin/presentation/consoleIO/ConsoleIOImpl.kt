@@ -1,4 +1,4 @@
-import org.beijingteam.presentation.consoleIO.ConsoleIO
+package org.beijingteam.presentation.consoleIO
 
 class ConsoleIOImpl : ConsoleIO {
     override fun show(message: String) {
@@ -12,5 +12,4 @@ class ConsoleIOImpl : ConsoleIO {
     override fun read(): String? {
         return readlnOrNull()?.trim()
     }
-
 }

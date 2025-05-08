@@ -14,5 +14,4 @@ class WeatherRepositoryImpl(
         val weatherCondition=remoteDataSource.getWeatherByCoordinate(locationCoordinate)
         return weatherMapper.mapToDomain(weatherCondition)
     }
-
 }

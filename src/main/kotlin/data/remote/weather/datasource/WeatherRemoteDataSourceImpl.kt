@@ -6,7 +6,7 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.serialization.json.Json
 import org.beijingteam.data.remote.weather.dto.WeatherDto
-import org.beijingteam.data.local.clothes.utils.ApiUrls.WEATHER_URL
+import org.beijingteam.data.remote.utils.ApiUrls.WEATHER_URL
 
 class WeatherRemoteDataSourceImpl(
     private val client: HttpClient,
