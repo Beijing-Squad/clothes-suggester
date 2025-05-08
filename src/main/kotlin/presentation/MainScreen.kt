@@ -4,13 +4,12 @@ import domain.entity.ClothType
 import domain.exception.MissingLocationException
 import domain.exception.MissingTemperatureException
 import domain.exception.MissingWeatherCodeException
-import domain.useCase.GetCoordinateByCityNameUseCase
-import domain.useCase.GetWeatherByLongitudeAndLatitudeUseCase
+import domain.usecase.GetCoordinateByCityNameUseCase
+import domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
 import kotlinx.coroutines.runBlocking
 import org.beijingteam.domain.entity.TemperatureCategory
 import org.beijingteam.domain.entity.Weather
-import org.beijingteam.domain.usecase.GetClothingSuggestionUseCase
-
+import org.beijingteam.domain.useCase.GetClothingSuggestionUseCase
 import org.beijingteam.presentation.consoleIO.ConsoleIO
 
 class MainScreen(
@@ -19,8 +18,6 @@ class MainScreen(
     private val clothingSuggestion: GetClothingSuggestionUseCase,
     private val consoleIO: ConsoleIO
 ) {
-
-
     fun start() {
         consoleIO.showWithLine("╔═════════════════════════════════════════════╗")
         consoleIO.showWithLine("║         👋 Welcome to Clothes Suggester     ║")
@@ -55,7 +52,6 @@ class MainScreen(
                     consoleIO.showWithLine("❌ Error occurred: ${e.message}")
                 }
             }
-
         }
     }
 
@@ -87,5 +83,4 @@ class MainScreen(
             TemperatureCategory.WARM, TemperatureCategory.HOT -> ClothType.LIGHT_CLOTH
         }
     }
-
 }

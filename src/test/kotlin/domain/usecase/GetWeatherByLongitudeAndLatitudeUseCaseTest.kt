@@ -4,7 +4,6 @@ import com.google.common.truth.Truth.assertThat
 import domain.entity.LocationCoordinate
 import domain.exception.MissingTemperatureException
 import domain.exception.MissingWeatherCodeException
-import domain.useCase.GetWeatherByLongitudeAndLatitudeUseCase
 import helper.createWeather
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -150,4 +149,5 @@ class GetWeatherByLongitudeAndLatitudeUseCaseTest {
             getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
         }
     }
+
 }

@@ -1,30 +1,28 @@
-package data.weather.dto
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class CityLocationDetailsDto(
     @SerialName("id")
-    val id: Int?,
+    val id: Int? = null,
     @SerialName("name")
-    val cityName: String?,
+    val cityName: String? = null,
     @SerialName("latitude")
-    val latitude: Double?,
+    val latitude: Double? = null,
     @SerialName("longitude")
-    val longitude: Double?,
+    val longitude: Double? = null,
     @SerialName("elevation")
-    val elevation: Double?,
+    val elevation: Double? = null,
     @SerialName("feature_code")
-    val featureCode: String?,
+    val featureCode: String? = null,
     @SerialName("timezone")
-    val timezone: String?,
+    val timezone: String? = null,
     @SerialName("population")
-    val population: Int?,
+    val population: Int? = null,
     @SerialName("country_id")
-    val countryId: Int?,
+    val countryId: Int? = null,
     @SerialName("country")
-    val country: String?,
+    val country: String? = null,
     @SerialName("country_code")
-    val countryCode: String?
+    val countryCode: String? = null
 )

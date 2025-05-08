@@ -4,7 +4,6 @@ import com.google.common.truth.Truth.assertThat
 import domain.entity.LocationCoordinate
 import domain.exception.MissingLocationException
 import domain.repository.LocationRepository
-import domain.useCase.GetCoordinateByCityNameUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest

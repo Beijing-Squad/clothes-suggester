@@ -9,6 +9,7 @@ class ClothesRepositoryImpl(
     private val clothesDataSource: ClothesDataSource
 ): ClothesRepository {
     override fun getClothByType(clothType: ClothType): List<Cloth> {
-        TODO("Not yet implemented")
+        val result = clothesDataSource.getClothesByType(clothType)
+        return result
     }
 }

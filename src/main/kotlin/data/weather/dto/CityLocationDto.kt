@@ -1,5 +1,6 @@
 package data.weather.dto
 
+import CityLocationDetailsDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
