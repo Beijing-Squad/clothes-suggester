@@ -1,6 +1,6 @@
 package org.beijingteam.data.local.cloth.repository
 
-import org.beijingteam.data.local.cloth.datasource.ClothesDataSource
+import data.local.clothes.datasource.ClothesDataSource
 import domain.entity.Clothes
 import domain.entity.ClothType
 import domain.repository.ClothesRepository

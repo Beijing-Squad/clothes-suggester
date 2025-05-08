@@ -1,10 +1,9 @@
-package org.beijingteam.data.local.cloth.datasource
+package data.local.clothes.datasource
 
-import org.beijingteam.data.local.cloth.datasource.ClothesDataSource
 import domain.entity.Clothes
 import domain.entity.ClothType
 
-class ClothesDataSourceImp: ClothesDataSource {
+class ClothesDataSourceImpl: ClothesDataSource {
     override fun getClothesByType(clothType: ClothType): List<Clothes> {
         return clothes.filter { it.clothType == clothType }
     }

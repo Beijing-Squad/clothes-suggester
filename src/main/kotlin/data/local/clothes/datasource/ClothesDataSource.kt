@@ -1,4 +1,4 @@
-package org.beijingteam.data.local.cloth.datasource
+package data.local.clothes.datasource
 
 import domain.entity.Clothes
 import domain.entity.ClothType
