@@ -5,7 +5,7 @@ import domain.entity.ClothType
 
 class ClothesDataSourceImpl: ClothesDataSource {
     override fun getClothesByType(clothType: ClothType): List<Clothes> {
-        return clothes.filter { it.clothType == clothType }
+        return filteredClothesByType[clothType] ?: emptyList()
     }
 
     @OptIn(kotlin.uuid.ExperimentalUuidApi::class)
@@ -34,5 +34,7 @@ class ClothesDataSourceImpl: ClothesDataSource {
             Clothes(clothName = "Padded Vest", clothType = ClothType.HEAVY_CLOTH),
             Clothes(clothName = "Winter Boots", clothType = ClothType.HEAVY_CLOTH),
         )
+
+        private val filteredClothesByType: Map<ClothType, List<Clothes>> = clothes.groupBy { it.clothType }
     }
 }
