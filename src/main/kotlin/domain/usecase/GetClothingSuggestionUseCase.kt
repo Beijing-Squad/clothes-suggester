@@ -1,4 +1,4 @@
-package org.beijingteam.domain.useCase
+package domain.usecase
 
 import domain.entity.ClothType
 import domain.entity.Clothes
