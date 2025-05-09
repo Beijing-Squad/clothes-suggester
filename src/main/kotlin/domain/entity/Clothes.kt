@@ -1,5 +1,6 @@
 package domain.entity
 
+import org.beijingteam.domain.type.ClothType
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 

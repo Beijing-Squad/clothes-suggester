@@ -16,7 +16,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
-import org.beijingteam.data.local.cloth.repository.ClothesRepositoryImpl
+import data.local.clothes.repository.ClothesRepositoryImpl
 import org.beijingteam.domain.repository.WeatherRepository
 import org.beijingteam.presentation.MainScreen
 import org.beijingteam.presentation.consoleIO.ConsoleIO
