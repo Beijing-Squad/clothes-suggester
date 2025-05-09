@@ -3,9 +3,8 @@ package org.beijingteam.data.remote.weather.datasource
 import domain.entity.LocationCoordinate
 import io.ktor.client.*
 import kotlinx.serialization.json.Json
-import org.beijingteam.data.remote.weather.dto.WeatherDto
-import org.beijingteam.data.remote.utils.getWithParams
 import org.beijingteam.data.remote.utils.ApiUrls.WEATHER_URL
+import org.beijingteam.data.remote.utils.getWithParams
 import org.beijingteam.data.remote.weather.dto.WeatherDto
 
 class WeatherRemoteDataSourceImpl(

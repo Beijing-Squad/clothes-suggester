@@ -2,8 +2,6 @@ package data.local.clothes.datasource
 
 import domain.entity.Clothes
 import org.beijingteam.domain.type.ClothType
-import domain.entity.ClothType
-import domain.entity.Clothes
 
 class ClothesDataSourceImpl : ClothesDataSource {
     override fun getClothesByType(clothType: ClothType): List<Clothes> {

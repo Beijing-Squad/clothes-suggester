@@ -8,9 +8,9 @@ import helper.createWeather
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
-import org.beijingteam.domain.entity.TemperatureCategory
-import org.beijingteam.domain.entity.WeatherCondition
 import org.beijingteam.domain.repository.WeatherRepository
+import org.beijingteam.domain.type.TemperatureCategory
+import org.beijingteam.domain.type.WeatherCondition
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertFailsWith

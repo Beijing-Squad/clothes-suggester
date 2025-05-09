@@ -1,7 +1,5 @@
 package helper
 
-import domain.entity.ClothType
-import domain.entity.Clothes
 import domain.entity.Clothes
 import org.beijingteam.domain.type.ClothType
 import kotlin.uuid.ExperimentalUuidApi

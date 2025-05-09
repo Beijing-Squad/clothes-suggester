@@ -1,4 +1,3 @@
-import domain.entity.ClothType
 import domain.entity.Clothes
 import domain.exception.MissingLocationException
 import domain.usecase.GetClothingSuggestionUseCase
@@ -9,6 +8,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
+import org.beijingteam.domain.type.ClothType
 import org.beijingteam.presentation.MainScreen
 import org.beijingteam.presentation.consoleIO.ConsoleIO
 import org.junit.jupiter.api.BeforeEach
