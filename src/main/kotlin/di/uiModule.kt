@@ -11,7 +11,6 @@ val uiModule = module {
     single {
         MainScreen(
             get(), get(),
-            get(), get()
         )
     }
 }
