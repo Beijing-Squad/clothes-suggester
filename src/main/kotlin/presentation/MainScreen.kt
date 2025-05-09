@@ -1,21 +1,16 @@
 package org.beijingteam.presentation
 
-import domain.entity.ClothType
+import domain.entity.Clothes
 import domain.exception.MissingLocationException
 import domain.exception.MissingTemperatureException
 import domain.exception.MissingWeatherConditionException
-import domain.usecase.GetClothingSuggestionUseCase
-import domain.usecase.GetCoordinateByCityNameUseCase
-import domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
 import kotlinx.coroutines.runBlocking
-import org.beijingteam.domain.entity.TemperatureCategory
 import org.beijingteam.domain.entity.Weather
 import org.beijingteam.presentation.consoleIO.ConsoleIO
+import org.beijingteam.service.ManageWeatherService
 
 class MainScreen(
-    private val getWeatherByCoordinate: GetWeatherByLongitudeAndLatitudeUseCase,
-    private val getCoordinateByCityName: GetCoordinateByCityNameUseCase,
-    private val clothingSuggestion: GetClothingSuggestionUseCase,
+    private val weatherService: ManageWeatherService,
     private val consoleIO: ConsoleIO
 ) {
     fun start() {
@@ -37,11 +32,10 @@ class MainScreen(
 
             runBlocking {
                 try {
-                    val coordinate = getCoordinateByCityName.getCoordinateByCityName(input)
-                    val weather = getWeatherByCoordinate.getWeatherByCoordinates(coordinate)
+                    consoleIO.showWithLine("🔄 Fetching weather data for $input...")
+                    val (weather, clothes) = weatherService.executeWeatherFlow(input)
                     showWeather(weather)
-                    showClothingSuggestion(weather.temperatureCategory)
-
+                    showClothingSuggestion(clothes)
                 } catch (locationError: MissingLocationException) {
                     consoleIO.showWithLine("❌ Error occurred: ${locationError.message}")
                 } catch (weatherError: MissingWeatherConditionException) {
@@ -64,10 +58,7 @@ class MainScreen(
         consoleIO.showWithLine("===========================================")
     }
 
-    private fun showClothingSuggestion(tempCategory: TemperatureCategory) {
-        val clothes = clothingSuggestion.getClothByType(
-            getAppropriateClothType(tempCategory)
-        )
+    private fun showClothingSuggestion(clothes: List<Clothes>) {
         consoleIO.showWithLine("\n🧣 Clothing Suggestions:")
         consoleIO.showWithLine("─────────────────────────────────────")
         clothes.forEach {
@@ -76,11 +67,4 @@ class MainScreen(
         consoleIO.showWithLine("─────────────────────────────────────\n")
     }
 
-    private fun getAppropriateClothType(tempCategory: TemperatureCategory): ClothType {
-        return when (tempCategory) {
-            TemperatureCategory.FREEZING, TemperatureCategory.COLD -> ClothType.HEAVY_CLOTH
-            TemperatureCategory.COOL, TemperatureCategory.MILD -> ClothType.MEDIUM_CLOTH
-            TemperatureCategory.WARM, TemperatureCategory.HOT -> ClothType.LIGHT_CLOTH
-        }
-    }
 }
