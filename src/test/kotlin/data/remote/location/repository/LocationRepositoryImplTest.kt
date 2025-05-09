@@ -6,7 +6,9 @@ import data.remote.location.dto.CityLocationDto
 import data.remote.location.repository.mapper.CityLocationMapper
 import domain.entity.LocationCoordinate
 import domain.exception.MissingLocationException
-import io.mockk.*
+import io.mockk.coEvery
+import io.mockk.every
+import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
@@ -48,7 +50,7 @@ class LocationRepositoryImplTest {
         // Given
         val cityName = "ErrorCity"
         val dto = mockk<CityLocationDto>()
-        
+
         coEvery { remoteDataSource.getLocationByCityName(cityName) } returns dto
         every { cityLocationMapper.mapDtoToLocationCoordinate(dto) } throws MissingLocationException()
 

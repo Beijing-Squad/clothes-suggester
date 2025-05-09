@@ -8,10 +8,5 @@ import org.koin.dsl.module
 
 val uiModule = module {
     single<ConsoleIO> { ConsoleIOImpl() }
-    single {
-        MainScreen(
-            get(), get(),
-            get(), get()
-        )
-    }
+    single { MainScreen(get(), get(), get()) }
 }

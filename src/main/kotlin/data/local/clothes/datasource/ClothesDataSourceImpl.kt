@@ -3,13 +3,13 @@ package data.local.clothes.datasource
 import domain.entity.Clothes
 import org.beijingteam.domain.type.ClothType
 
-class ClothesDataSourceImpl: ClothesDataSource {
+class ClothesDataSourceImpl : ClothesDataSource {
     override fun getClothesByType(clothType: ClothType): List<Clothes> {
         return filteredClothesByType[clothType] ?: emptyList()
     }
 
     @OptIn(kotlin.uuid.ExperimentalUuidApi::class)
-    companion object{
+    companion object {
         private val clothes = listOf(
 
             Clothes(clothName = "T-Shirt", clothType = ClothType.LIGHT_CLOTH),

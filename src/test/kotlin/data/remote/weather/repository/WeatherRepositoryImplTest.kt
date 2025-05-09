@@ -39,8 +39,10 @@ class WeatherRepositoryImplTest {
         )
         coEvery { remoteDataSource.getWeatherByCoordinate(coordinate) } returns remoteWeather
         coEvery { weatherMapper.mapToDomain(remoteWeather) } returns expectedWeather
+
         // When
         val result = weatherRepository.getWeatherByCoordinate(coordinate)
+
         // Then
         assertThat(result).isEqualTo(expectedWeather)
     }
@@ -50,6 +52,7 @@ class WeatherRepositoryImplTest {
         // Given
         val coordinate = LocationCoordinate(0.0, 0.0)
         coEvery { remoteDataSource.getWeatherByCoordinate(coordinate) } throws RuntimeException("Network error")
+
         // When & Then
         val exception = kotlin.test.assertFailsWith<RuntimeException> {
             weatherRepository.getWeatherByCoordinate(coordinate)
