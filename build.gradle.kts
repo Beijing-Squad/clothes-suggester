@@ -1,5 +1,9 @@
 plugins {
     kotlin("jvm") version "2.1.20"
+    id("com.github.kt3k.coveralls") version "2.12.0"
+    id("io.ktor.plugin") version "3.1.2"
+    kotlin("plugin.serialization") version "1.9.10"
+    application
 }
 
 group = "org.beijingteam"
@@ -16,6 +20,12 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.12.0")
     testImplementation("io.mockk:mockk:1.14.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$1.10.2")
+    implementation("io.ktor:ktor-client-core:3.1.2")
+    implementation("io.ktor:ktor-client-cio:3.1.2")
+    implementation("io.ktor:ktor-client-content-negotiation:3.1.2")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:3.1.2")
 }
 
 tasks.test {
