@@ -4,6 +4,8 @@ import com.google.common.truth.Truth.assertThat
 import data.local.clothes.datasource.ClothesDataSource
 import domain.entity.LocationCoordinate
 import domain.exception.MissingLocationException
+import domain.exception.MissingTemperatureException
+import domain.exception.MissingWeatherConditionException
 import domain.repository.LocationRepository
 import domain.usecase.GetClothingSuggestionUseCase
 import domain.usecase.GetCoordinateByCityNameUseCase
@@ -68,6 +70,21 @@ class MainScreenTest {
         }
     }
 
+    @Test
+    fun `should start again when choice is empty`() {
+        // Given
+        val emptyInput = ""
+        every { consoleIO.read() } returns emptyInput andThen EXIT_INPUT
+
+        // When
+        mainScreen.start()
+
+        // Then
+        verify {
+            consoleIO.showWithLine(any())
+        }
+    }
+
     @OptIn(ExperimentalUuidApi::class)
     @Test
     fun `should return weather and clothes when city name is valid`() = runTest {
@@ -95,15 +112,75 @@ class MainScreenTest {
     }
 
     @Test
-    fun `should show error message when weather fetching fails`() = runTest {
+    fun `should get location error when location fetching fails`() = runTest {
         // Given
         val cityName = "qwerty"
         every { consoleIO.read() } returns cityName andThen EXIT_INPUT
         coEvery { locationRepository.getCoordinateByCityName(cityName) } throws MissingLocationException()
 
+        // When
+        mainScreen.start()
+        // Then
+        assertThrows<MissingLocationException> { getCoordinateByCityNameUseCase.getCoordinateByCityName(cityName) }
+
+    }
+
+    @Test
+    fun `should get weather error when weather fetching fails`() = runTest {
+        // Given
+        val cityName = "Baghdad"
+        every { consoleIO.read() } returns cityName andThen EXIT_INPUT
+        val locationCoordinate = LocationCoordinate(
+            latitude = 31.0,
+            longitude = 23.0
+        )
+        coEvery { weatherRepository.getWeatherByCoordinate(any()) } throws MissingWeatherConditionException()
+
         // When & Then
         mainScreen.start()
-        assertThrows<MissingLocationException> { getCoordinateByCityNameUseCase.getCoordinateByCityName(cityName) }
+        assertThrows<MissingWeatherConditionException> {
+            getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
+        }
+
+    }
+
+    @Test
+    fun `should get temperature error when weather temperature fetching fails`() = runTest {
+        // Given
+        val cityName = "Baghdad"
+        every { consoleIO.read() } returns cityName andThen EXIT_INPUT
+        val locationCoordinate = LocationCoordinate(
+            latitude = 31.0,
+            longitude = 23.0
+        )
+        coEvery { weatherRepository.getWeatherByCoordinate(any()) } throws MissingTemperatureException()
+
+        // When
+        mainScreen.start()
+        //Then
+        assertThrows<MissingTemperatureException> {
+            getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
+        }
+
+    }
+
+    @Test
+    fun `should get exception error when weather or location fetching fails for unknown reasons `() = runTest {
+        // Given
+        val cityName = "Baghdad"
+        every { consoleIO.read() } returns cityName andThen EXIT_INPUT
+        val locationCoordinate = LocationCoordinate(
+            latitude = 31.0,
+            longitude = 23.0
+        )
+        coEvery { weatherRepository.getWeatherByCoordinate(any()) } throws Exception()
+
+        // When
+        mainScreen.start()
+        //Then
+        assertThrows<Exception> {
+            getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(locationCoordinate)
+        }
 
     }
 

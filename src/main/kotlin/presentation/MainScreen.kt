@@ -1,6 +1,5 @@
 package org.beijingteam.presentation
 
-import domain.entity.ClothType
 import domain.exception.MissingLocationException
 import domain.exception.MissingTemperatureException
 import domain.exception.MissingWeatherConditionException
@@ -65,9 +64,7 @@ class MainScreen(
     }
 
     private fun showClothingSuggestion(tempCategory: TemperatureCategory) {
-        val clothes = clothingSuggestion.getClothByType(
-            getAppropriateClothType(tempCategory)
-        )
+        val clothes = clothingSuggestion.getClothByTempCategory(tempCategory)
         consoleIO.showWithLine("\n🧣 Clothing Suggestions:")
         consoleIO.showWithLine("─────────────────────────────────────")
         clothes.forEach {
@@ -76,11 +73,4 @@ class MainScreen(
         consoleIO.showWithLine("─────────────────────────────────────\n")
     }
 
-    private fun getAppropriateClothType(tempCategory: TemperatureCategory): ClothType {
-        return when (tempCategory) {
-            TemperatureCategory.FREEZING, TemperatureCategory.COLD -> ClothType.HEAVY_CLOTH
-            TemperatureCategory.COOL, TemperatureCategory.MILD -> ClothType.MEDIUM_CLOTH
-            TemperatureCategory.WARM, TemperatureCategory.HOT -> ClothType.LIGHT_CLOTH
-        }
-    }
 }
