@@ -7,8 +7,8 @@ import domain.usecase.GetClothingSuggestionUseCase
 import domain.usecase.GetCoordinateByCityNameUseCase
 import domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
 import kotlinx.coroutines.runBlocking
-import org.beijingteam.domain.entity.TemperatureCategory
 import org.beijingteam.domain.entity.Weather
+import org.beijingteam.domain.type.TemperatureCategory
 import org.beijingteam.presentation.consoleIO.ConsoleIO
 
 class MainScreen(

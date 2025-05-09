@@ -1,9 +1,9 @@
 package domain.usecase
 
-import org.beijingteam.domain.type.ClothType
 import domain.entity.Clothes
 import domain.repository.ClothesRepository
-import org.beijingteam.domain.entity.TemperatureCategory
+import org.beijingteam.domain.type.ClothType
+import org.beijingteam.domain.type.TemperatureCategory
 
 class GetClothingSuggestionUseCase(
     private val clothesRepository: ClothesRepository
