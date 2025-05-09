@@ -1,8 +1,8 @@
 package domain.repository
 
-import domain.entity.Clothes
 import domain.entity.ClothType
+import domain.entity.Clothes
 
 interface ClothesRepository {
-    fun getClothByType(clothType: ClothType): List<Clothes>
+    fun getClothesByType(clothType: ClothType): List<Clothes>
 }
