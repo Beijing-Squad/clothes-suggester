@@ -1,6 +1,6 @@
 package domain.usecase
 
-import domain.entity.ClothType
+import org.beijingteam.domain.type.ClothType
 import domain.entity.Clothes
 import domain.repository.ClothesRepository
 import org.beijingteam.domain.entity.TemperatureCategory
