@@ -11,7 +11,7 @@ import domain.repository.LocationRepository
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import kotlinx.serialization.json.Json
-import org.beijingteam.data.local.cloth.repository.ClothesRepositoryImpl
+import data.local.clothes.repository.ClothesRepositoryImpl
 import org.beijingteam.data.remote.weather.datasource.WeatherRemoteDataSource
 import org.beijingteam.data.remote.weather.datasource.WeatherRemoteDataSourceImpl
 import org.beijingteam.data.remote.weather.repository.WeatherRepositoryImpl

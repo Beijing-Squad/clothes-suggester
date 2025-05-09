@@ -3,9 +3,9 @@ package org.beijingteam.data.remote.weather.repository.mapper
 import domain.exception.MissingTemperatureException
 import domain.exception.MissingWeatherConditionException
 import org.beijingteam.data.remote.weather.dto.WeatherDto
-import org.beijingteam.domain.entity.TemperatureCategory
+import org.beijingteam.domain.type.TemperatureCategory
 import org.beijingteam.domain.entity.Weather
-import org.beijingteam.domain.entity.WeatherCondition
+import org.beijingteam.domain.type.WeatherCondition
 
 class WeatherMapper {
 

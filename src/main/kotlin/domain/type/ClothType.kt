@@ -1,4 +1,4 @@
-package domain.entity
+package org.beijingteam.domain.type
 
 enum class ClothType {
     LIGHT_CLOTH,

@@ -1,4 +1,4 @@
-package org.beijingteam.domain.entity
+package org.beijingteam.domain.type
 
 enum class WeatherCondition {
     CLEAR,
