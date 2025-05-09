@@ -1,57 +1,34 @@
 package presentation
 
-import com.google.common.truth.Truth.assertThat
-import data.local.clothes.datasource.ClothesDataSource
-import domain.entity.LocationCoordinate
+import domain.entity.ClothType
+import domain.entity.Clothes
 import domain.exception.MissingLocationException
-import domain.repository.LocationRepository
-import domain.usecase.GetClothingSuggestionUseCase
-import domain.usecase.GetCoordinateByCityNameUseCase
-import domain.usecase.GetWeatherByLongitudeAndLatitudeUseCase
-import helper.createWeather
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.test.runTest
-import org.beijingteam.data.local.cloth.repository.ClothesRepositoryImpl
-import org.beijingteam.domain.repository.WeatherRepository
+import org.beijingteam.domain.entity.TemperatureCategory
+import org.beijingteam.domain.entity.Weather
+import org.beijingteam.domain.entity.WeatherCondition
 import org.beijingteam.presentation.MainScreen
 import org.beijingteam.presentation.consoleIO.ConsoleIO
+import org.beijingteam.service.ManageWeatherService
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import kotlin.uuid.ExperimentalUuidApi
 
 class MainScreenTest {
 
-    private lateinit var consoleIO: ConsoleIO
     private lateinit var mainScreen: MainScreen
-    private lateinit var getWeatherByLongitudeAndLatitudeUseCase: GetWeatherByLongitudeAndLatitudeUseCase
-    private lateinit var getCoordinateByCityNameUseCase: GetCoordinateByCityNameUseCase
-    private lateinit var getClothingSuggestionUseCase: GetClothingSuggestionUseCase
-    private lateinit var locationRepository: LocationRepository
-    private lateinit var weatherRepository: WeatherRepository
-    private lateinit var clothesDataSource: ClothesDataSource
-    private lateinit var clothesRepo: ClothesRepositoryImpl
+    private lateinit var weatherService: ManageWeatherService
+    private lateinit var consoleIO: ConsoleIO
 
     @BeforeEach
     fun setup() {
         consoleIO = mockk(relaxed = true)
-        weatherRepository = mockk(relaxed = true)
-        locationRepository = mockk(relaxed = true)
-        clothesDataSource = mockk(relaxed = true)
-        clothesRepo = mockk(relaxed = true)
-        getClothingSuggestionUseCase = GetClothingSuggestionUseCase(clothesRepo)
-        getWeatherByLongitudeAndLatitudeUseCase = GetWeatherByLongitudeAndLatitudeUseCase(weatherRepository)
-        getCoordinateByCityNameUseCase = GetCoordinateByCityNameUseCase(locationRepository)
-
-        mainScreen = MainScreen(
-            getWeatherByLongitudeAndLatitudeUseCase,
-            getCoordinateByCityNameUseCase,
-            getClothingSuggestionUseCase,
-            consoleIO
-        )
+        weatherService = mockk()
+        mainScreen = MainScreen(weatherService, consoleIO)
     }
 
     @Test
@@ -63,35 +40,33 @@ class MainScreenTest {
         mainScreen.start()
 
         // Then
-        verify {
-            consoleIO.showWithLine(any())
-        }
+        verify { consoleIO.showWithLine(any()) }
     }
 
     @OptIn(ExperimentalUuidApi::class)
     @Test
     fun `should return weather and clothes when city name is valid`() = runTest {
         // Given
-        val cityName = "Baghdad"
-        val dummyWeather = createWeather()
-        val locationCoordinate = LocationCoordinate(
-            latitude = 31.0,
-            longitude = 23.0
+        val cityName = "Beijing"
+        val weather = Weather(
+            temperature = 20.0,
+            weatherCondition = WeatherCondition.CLEAR,
+            temperatureCategory = TemperatureCategory.MILD
         )
+        val clothes = listOf(
+            Clothes(clothName = "Hoodie", clothType = ClothType.MEDIUM_CLOTH),
+            Clothes(clothName = "Light Jacket", clothType = ClothType.MEDIUM_CLOTH),
+            Clothes(clothName = "Pullover", clothType = ClothType.MEDIUM_CLOTH),
+        )
+
         every { consoleIO.read() } returns cityName andThen EXIT_INPUT
-        coEvery { locationRepository.getCoordinateByCityName(cityName) } returns locationCoordinate
-        coEvery { weatherRepository.getWeatherByCoordinate(locationCoordinate) } returns dummyWeather
+        coEvery { weatherService.executeWeatherFlow(cityName) } returns Pair(weather, clothes)
 
         // When
         mainScreen.start()
-        val location = getCoordinateByCityNameUseCase.getCoordinateByCityName(cityName)
-        val weather = getWeatherByLongitudeAndLatitudeUseCase.getWeatherByCoordinates(location)
 
         // Then
-
-        assertThat(weather).isEqualTo(dummyWeather)
-        assertThat(location).isEqualTo(locationCoordinate)
-
+        verify { consoleIO.showWithLine(any()) }
     }
 
     @Test
@@ -99,12 +74,13 @@ class MainScreenTest {
         // Given
         val cityName = "qwerty"
         every { consoleIO.read() } returns cityName andThen EXIT_INPUT
-        coEvery { locationRepository.getCoordinateByCityName(cityName) } throws MissingLocationException()
+        coEvery { weatherService.executeWeatherFlow(cityName) } throws MissingLocationException()
 
         // When & Then
         mainScreen.start()
-        assertThrows<MissingLocationException> { getCoordinateByCityNameUseCase.getCoordinateByCityName(cityName) }
 
+        // Then
+        verify { consoleIO.showWithLine(any()) }
     }
 
     private companion object {
