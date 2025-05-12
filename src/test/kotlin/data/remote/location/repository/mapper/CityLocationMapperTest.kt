@@ -1,6 +1,6 @@
 package data.remote.location.repository.mapper
 
-import CityLocationDetailsDto
+import data.remote.location.dto.CityLocationDetailsDto
 import com.google.common.truth.Truth.assertThat
 import data.remote.location.dto.CityLocationDto
 import domain.entity.LocationCoordinate
@@ -32,7 +32,7 @@ class CityLocationMapperTest {
         )
 
         // When
-        val result = mapper.mapDtoToLocationCoordinate(dto)
+        val result = mapper.mapLocationDtoToLocationCoordinate(dto)
 
         // Then
         assertThat(result).isEqualTo(LocationCoordinate(48.8566, 2.3522))
@@ -48,7 +48,7 @@ class CityLocationMapperTest {
 
         // When && Then
         assertThrows<MissingLocationException> {
-            mapper.mapDtoToLocationCoordinate(dto)
+            mapper.mapLocationDtoToLocationCoordinate(dto)
         }
     }
 
@@ -62,7 +62,7 @@ class CityLocationMapperTest {
 
         // When && Then
         assertThrows<MissingLocationException> {
-            mapper.mapDtoToLocationCoordinate(dto)
+            mapper.mapLocationDtoToLocationCoordinate(dto)
         }
     }
 
@@ -81,7 +81,7 @@ class CityLocationMapperTest {
 
         // When && Then
         assertThrows<MissingLocationException> {
-            mapper.mapDtoToLocationCoordinate(dto)
+            mapper.mapLocationDtoToLocationCoordinate(dto)
         }
     }
 
@@ -100,7 +100,7 @@ class CityLocationMapperTest {
 
         // When && Then
         assertThrows<MissingLocationException> {
-            mapper.mapDtoToLocationCoordinate(dto)
+            mapper.mapLocationDtoToLocationCoordinate(dto)
         }
     }
 
