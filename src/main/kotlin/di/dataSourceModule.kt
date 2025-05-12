@@ -10,8 +10,8 @@ import domain.repository.ClothesRepository
 import domain.repository.LocationRepository
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
-import kotlinx.serialization.json.Json
 import data.local.clothes.repository.ClothesRepositoryImpl
+import kotlinx.serialization.json.Json
 import org.beijingteam.data.remote.weather.datasource.WeatherRemoteDataSource
 import org.beijingteam.data.remote.weather.datasource.WeatherRemoteDataSourceImpl
 import org.beijingteam.data.remote.weather.repository.WeatherRepositoryImpl
@@ -29,8 +29,8 @@ val dataSourceModule = module {
     single<HttpClient> { HttpClient(CIO) }
     single { Json { ignoreUnknownKeys = true } }
 
-    single<LocationRemoteDataSource> { LocationRemoteDataSourceImpl(get(), get()) }
-    single<WeatherRemoteDataSource> { WeatherRemoteDataSourceImpl(get(), get()) }
+    single<LocationRemoteDataSource> { LocationRemoteDataSourceImpl(get()) }
+    single<WeatherRemoteDataSource> { WeatherRemoteDataSourceImpl(get()) }
 
     single { CityLocationMapper() }
     single { WeatherMapper() }
