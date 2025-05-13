@@ -11,6 +11,6 @@ class LocationRepositoryImpl(
 ) : LocationRepository {
     override suspend fun getCoordinateByCityName(cityName: String): LocationCoordinate {
         val locationCoordinateDto = remoteDataSource.getLocationByCityName(cityName)
-        return cityLocationMapper.mapDtoToLocationCoordinate(locationCoordinateDto)
+        return cityLocationMapper.mapLocationDtoToLocationCoordinate(locationCoordinateDto)
     }
 }

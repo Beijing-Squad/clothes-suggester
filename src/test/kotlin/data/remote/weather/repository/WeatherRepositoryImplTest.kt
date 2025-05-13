@@ -38,7 +38,7 @@ class WeatherRepositoryImplTest {
             temperatureCategory = TemperatureCategory.MILD
         )
         coEvery { remoteDataSource.getWeatherByCoordinate(coordinate) } returns remoteWeather
-        coEvery { weatherMapper.mapToDomain(remoteWeather) } returns expectedWeather
+        coEvery { weatherMapper.mapWeatherDtoToWeatherEntity(remoteWeather) } returns expectedWeather
 
         // When
         val result = weatherRepository.getWeatherByCoordinate(coordinate)
@@ -66,7 +66,7 @@ class WeatherRepositoryImplTest {
         val coordinate = LocationCoordinate(1.0, 1.0)
         val remoteWeather = mockk<WeatherDto>()
         coEvery { remoteDataSource.getWeatherByCoordinate(coordinate) } returns remoteWeather
-        coEvery { weatherMapper.mapToDomain(remoteWeather) } throws IllegalStateException("Invalid data")
+        coEvery { weatherMapper.mapWeatherDtoToWeatherEntity(remoteWeather) } throws IllegalStateException("Invalid data")
 
         // When & Then
         val exception = kotlin.test.assertFailsWith<IllegalStateException> {

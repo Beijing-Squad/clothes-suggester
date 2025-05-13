@@ -12,6 +12,6 @@ class WeatherRepositoryImpl(
 ) : WeatherRepository {
     override suspend fun getWeatherByCoordinate(locationCoordinate: LocationCoordinate): Weather {
         val weatherCondition = remoteDataSource.getWeatherByCoordinate(locationCoordinate)
-        return weatherMapper.mapToDomain(weatherCondition)
+        return weatherMapper.mapWeatherDtoToWeatherEntity(weatherCondition)
     }
 }

@@ -36,7 +36,7 @@ class LocationRepositoryImplTest {
         val expectedLocation = LocationCoordinate(39.9042, 116.4074)
 
         coEvery { remoteDataSource.getLocationByCityName(cityName) } returns dto
-        every { cityLocationMapper.mapDtoToLocationCoordinate(dto) } returns expectedLocation
+        every { cityLocationMapper.mapLocationDtoToLocationCoordinate(dto) } returns expectedLocation
 
         // When
         val result = locationRepository.getCoordinateByCityName(cityName)
@@ -52,7 +52,7 @@ class LocationRepositoryImplTest {
         val dto = mockk<CityLocationDto>()
 
         coEvery { remoteDataSource.getLocationByCityName(cityName) } returns dto
-        every { cityLocationMapper.mapDtoToLocationCoordinate(dto) } throws MissingLocationException()
+        every { cityLocationMapper.mapLocationDtoToLocationCoordinate(dto) } throws MissingLocationException()
 
         // When && Then
         assertThrows<MissingLocationException> {

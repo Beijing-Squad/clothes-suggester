@@ -9,15 +9,15 @@ import org.beijingteam.domain.type.WeatherCondition
 
 class WeatherMapper {
 
-    fun mapToDomain(weatherDto: WeatherDto): Weather {
-        val temperature = weatherDto.currentWeather?.temperature2m
+    fun mapWeatherDtoToWeatherEntity(weatherDto: WeatherDto): Weather {
+        val temperature = weatherDto.currentWeather?.weatherTemperature
             ?: throw MissingTemperatureException()
 
         val weatherCode = weatherDto.currentWeather.weatherCode
             ?: throw MissingWeatherConditionException()
 
-        val condition = mapCondition(weatherCode)
-        val category = mapTemperatureCategory(temperature)
+        val condition = mapWeatherCodeToWeatherCondition(weatherCode)
+        val category = mapWeatherTemperatureToTemperatureCategory(temperature)
 
         return Weather(
             temperature = temperature,
@@ -26,7 +26,7 @@ class WeatherMapper {
         )
     }
 
-    private fun mapCondition(weatherCode: Int): WeatherCondition {
+    private fun mapWeatherCodeToWeatherCondition(weatherCode: Int): WeatherCondition {
         return when (weatherCode) {
             0 -> WeatherCondition.CLEAR
             1, 2, 3 -> WeatherCondition.PARTLY_CLOUDY
@@ -39,7 +39,7 @@ class WeatherMapper {
         }
     }
 
-    private fun mapTemperatureCategory(temperature: Double): TemperatureCategory {
+    private fun mapWeatherTemperatureToTemperatureCategory(temperature: Double): TemperatureCategory {
         return when {
             temperature < 0 -> TemperatureCategory.FREEZING
             temperature < 10 -> TemperatureCategory.COLD
