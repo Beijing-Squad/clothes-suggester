@@ -9,7 +9,7 @@ import org.beijingteam.domain.type.WeatherCondition
 
 class WeatherMapper {
 
-    fun mapWeatherDtoToWeatherDomain(weatherDto: WeatherDto): Weather {
+    fun mapWeatherDtoToWeatherEntity(weatherDto: WeatherDto): Weather {
         val temperature = weatherDto.currentWeather?.weatherTemperature
             ?: throw MissingTemperatureException()
 

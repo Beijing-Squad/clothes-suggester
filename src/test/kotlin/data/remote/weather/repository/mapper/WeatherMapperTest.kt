@@ -33,7 +33,7 @@ class WeatherMapperTest {
         )
 
         // When
-        val result = mapper.mapWeatherDtoToWeatherDomain(dto)
+        val result = mapper.mapWeatherDtoToWeatherEntity(dto)
 
         // Then
         assertThat(result).isEqualTo(
@@ -57,7 +57,7 @@ class WeatherMapperTest {
 
         // When & Then
         assertThrows<MissingTemperatureException> {
-            mapper.mapWeatherDtoToWeatherDomain(dto)
+            mapper.mapWeatherDtoToWeatherEntity(dto)
         }
     }
 
@@ -73,7 +73,7 @@ class WeatherMapperTest {
 
         // When & Then
         assertThrows<MissingWeatherConditionException> {
-            mapper.mapWeatherDtoToWeatherDomain(dto)
+            mapper.mapWeatherDtoToWeatherEntity(dto)
         }
     }
 
@@ -84,7 +84,7 @@ class WeatherMapperTest {
 
         // When & Then
         assertThrows<MissingTemperatureException> {
-            mapper.mapWeatherDtoToWeatherDomain(dto)
+            mapper.mapWeatherDtoToWeatherEntity(dto)
         }
     }
 
